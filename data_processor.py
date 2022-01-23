@@ -11,19 +11,27 @@ class DfProcessor:
         2. 'sb' for SCADA (before last update)
         3. to be updated....
     """
-    def __init__(self, csv_file_path: str, source='s'):
+
+    def __init__(self, file_path: str, source='s'):
 
         if source == 's':
-            raw_df = pd.read_csv(csv_file_path, skiprows=[1], parse_dates=[0],
-                                 infer_datetime_format=True, index_col=[0], dayfirst=False)
-            self.df = raw_df.dropna(axis=1, thresh=1)
-            for j in self.df.columns:
-                self.df[str(j)].replace(to_replace=0, method='bfill', inplace=True)
+            if file_path.endswith('.csv'):
+                raw_df = pd.read_csv(file_path, skiprows=[1], parse_dates=[0],
+                                     infer_datetime_format=True, index_col=[0], dayfirst=False)
+                self.df = raw_df.dropna(axis=1, thresh=1)
+                for j in self.df.columns:
+                    self.df[str(j)].replace(to_replace=0, method='bfill', inplace=True)
+
+            else:
+                raw_df = pd.read_excel(file_path, skiprows=[1], parse_dates=[0],
+                                       index_col=[0])
+                self.df = raw_df.dropna(axis=1, thresh=1)
+                for j in self.df.columns:
+                    self.df[str(j)].replace(to_replace=0, method='bfill', inplace=True)
 
         # self.df = self.df.loc['2021-11-13 02:08':'2021-11-13 02:17']
         # self.df = self.df.loc['2021-11-13 02:00':'2021-11-13 10:00']
         # self.df = self.df.loc['2021-11-14 16:00':'2021-11-14 17:00']
-
 
 # file_path = 'F:/Summit Bib 2021.11.16.csv'
 # file_path = 'F:/Bhola_Notun_Biddyut/2021.11.09.csv'
