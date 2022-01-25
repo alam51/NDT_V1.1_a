@@ -4,6 +4,7 @@ import numpy as np
 file_path = r'G:\Other computers\My Computer\Data [F]\Gen\Irrigation\2021\peaks\total.csv'
 df = pd.read_csv(file_path, parse_dates=[0],
                  infer_datetime_format=True, index_col=[0, 1], dayfirst=True)
+year = df.index[0][0].year
 a = 4
 # print(df)
 # df_dhaka = df
@@ -45,12 +46,22 @@ zone_df_list[0] = df_dhaka
 resampled_zone_df_list = []
 for zone_df in zone_df_list:
     df3 = zone_df.resample('1W').max()
-    resampled_zone_df_list.append(df3)
+    start_str = str(year)+'-2'
+    end_str = str(year)+'-4'
+    resampled_zone_df_list.append(df3.loc[start_str:end_str])
 
 reshaped_zone_df_list = []
-for df in resampled_zone_df_list:
-    new_df = pd.DataFrame()
-    for i in df.index:
-        if i.month in [2, 3, 4]:
-            new_df.loc[i.day, i.month] = df.loc[i, 'value']
+month_count_dict = {2:1, 3:1, 4:1, 5:1}
+with pd.ExcelWriter("op.xlsx") as writer:
+    for df in resampled_zone_df_list:
+        new_df = pd.DataFrame()
+        for i in df.index:
+            if i.month in [2, 3, 4]:
+                new_df.loc[month_count_dict[i.month], i.strftime("%B-%y")] = df.loc[i, 'value']
+                month_count_dict[i.month] += 1
+        # reshaped_zone_df_list.append(new_df)
+        new_df.index.name = 'Week'
+        sheet_name = df.loc[:, 'name'][0]
+        new_df.to_excel(writer, sheet_name=sheet_name)
+
 c = 5
