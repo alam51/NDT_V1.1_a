@@ -6,15 +6,14 @@ df = pd.read_csv(file_path, parse_dates=[0],
                  infer_datetime_format=True, index_col=[0, 1], dayfirst=True)
 year = df.index[0][0].year
 a = 4
-# print(df)
-# df_dhaka = df
-# df1
-# for i in df_dhaka.index:
-#     if i[1] not in [1,2,3,4]:
-#         l = [pd.NA for j in df_dhaka.columns]
-#         df_dhaka.loc[i, :] = l
-#
-# df_dhaka.dropna(inplace=True)
+
+total_df = pd.DataFrame()
+for i in df.index:
+    if i[0] not in total_df.index:
+        total_df.loc[i[0], 'name'] = 'system total'
+        new_df = df.xs(i[0])
+        total_df.loc[i[0], 'value'] = new_df.loc[:, 'value'].sum()
+
 df_dhaka = pd.DataFrame()
 
 """unifying zones 1-4 to a single zone Dhaka by summing up"""
@@ -42,19 +41,21 @@ for i in range(1, 12 + 1):
     # pass
 
 zone_df_list[0] = df_dhaka
+zone_df_list.append(total_df)
 
 resampled_zone_df_list = []
 for zone_df in zone_df_list:
     df3 = zone_df.resample('1W').max()
-    start_str = str(year)+'-2'
-    end_str = str(year)+'-4'
+    start_str = str(year) + '-2'
+    end_str = str(year) + '-4'
     resampled_zone_df_list.append(df3.loc[start_str:end_str])
 
 reshaped_zone_df_list = []
-month_count_dict = {2:1, 3:1, 4:1, 5:1}
+
 with pd.ExcelWriter("op.xlsx") as writer:
     for df in resampled_zone_df_list:
         new_df = pd.DataFrame()
+        month_count_dict = {2: 1, 3: 1, 4: 1, 5: 1}
         for i in df.index:
             if i.month in [2, 3, 4]:
                 new_df.loc[month_count_dict[i.month], i.strftime("%B-%y")] = df.loc[i, 'value']
