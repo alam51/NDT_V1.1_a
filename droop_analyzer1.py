@@ -49,9 +49,9 @@ def hourly_rank(df: pd.DataFrame, time_start=None, time_end=None, freq='1H'):
     new_col_names = []
     for j, col in enumerate(rank_df1.columns):
         c = re.search(r'.STTN', col)
-        d = re.search('CALC_', col)
+        d = re.search(r'CALC_', col)
         new_col_name1 = col[:c.span()[0]] if c else ''
-        new_col_name2 = col[d.span()[1] + 0] if d else ''  # last span is already original pos + 1
+        new_col_name2 = '_' + col[d.span()[1] + 0] if d else ''  # d.span()[1] already points to next char of last point
         new_col_names.append(new_col_name1 + new_col_name2)
         # rank_df1.columns[j] = new_col_name1 + new_col_name2
     rank_df1.columns = new_col_names
