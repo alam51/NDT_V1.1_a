@@ -1,7 +1,16 @@
 import pandas as pd
+import re
 
-df = pd.DataFrame()
+pattern = 'by'
+# pattern = '^a...s$'
+test_string = 'abyss'
+result = re.search(pattern, test_string)
 
-dt = pd.to_datetime('2021-1-5')
-df.loc[dt, '2'] = 5
-a = 5
+a = 'SHJB1P.STTN.GEN_CALC_1.MW'
+b = a.upper()
+pat = r'.STTN'
+
+c = re.search(r'.STTN', b)
+d = re.search('CALC_', b)
+# d = re.match(r'.MW$', b)
+e = 4

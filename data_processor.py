@@ -29,30 +29,11 @@ class DfProcessor:
                 for j in self.df.columns:
                     self.df[str(j)].replace(to_replace=0, method='bfill', inplace=True)
 
-        # self.df = self.df.loc['2021-11-13 02:08':'2021-11-13 02:17']
-        # self.df = self.df.loc['2021-11-13 02:00':'2021-11-13 10:00']
-        # self.df = self.df.loc['2021-11-14 16:00':'2021-11-14 17:00']
-
-# file_path = 'F:/Summit Bib 2021.11.16.csv'
-# file_path = 'F:/Bhola_Notun_Biddyut/2021.11.09.csv'
-# df = DfProcessor(file_path)
-#
-# df.df.plot(secondary_y=[df.df.columns[1]])
-# plt.show()
-# x_data = df.df.loc['2021-11-09 01:00':'2021-11-09 19:00'].iloc[:, 1].to_list()
-# y_data = df.df.loc['2021-11-09 01:00':'2021-11-09 19:00'].iloc[:, 0].to_list()
-# # df.df.plot.scatter(x=df.df.columns[1], y=df.df.columns[0])
-# slope, intercept, r, p, std_err = stats.linregress(x_data, y_data)
-# droop = (intercept-50.0)/50.0
-#
-# def myfunc(x):
-#     return slope * x + intercept
-#
-#
-# # df.df.loc['2021-11-08 18'].plot.scatter(x=df.df.columns[1], y=df.df.columns[0])
-# mymodel = list(map(myfunc, x_data))
-# plt.scatter(x_data, y_data)
-# plt.plot(x_data, mymodel, color='r', label=f'slope={slope}\nintercept={intercept}\ndroop={droop*100}%')
-# plt.legend()
-# plt.show()
-# b = 4
+        elif source == 'ems':
+            raw_df = pd.read_csv(file_path, skiprows=None, parse_dates=[0, 4],
+                                 infer_datetime_format=True, index_col=None, dayfirst=False)
+            raw_df1 = raw_df.dropna(axis=1, thresh=5)
+            raw_df = raw_df1.dropna(axis=0, how='any')
+            raw_df1 = raw_df.set_index('Time')
+            self.df = raw_df1.loc[:, ['Value', 'Value.1']]
+            self.df.columns = ['Freq', 'MW']

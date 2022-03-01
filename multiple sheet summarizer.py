@@ -27,11 +27,9 @@ for file in files:
                         df1.loc[date-pd.to_timedelta('1 day'), 'MMCFD'] = df.iloc[i,j-1]
                         br = False
                         break
-
         c = 5
     except Exception:
         traceback.print_exc()
 
 df1.to_excel('MMCFD.xlsx')
 print(f'time elapsed {datetime.datetime.now() - t1}')
-

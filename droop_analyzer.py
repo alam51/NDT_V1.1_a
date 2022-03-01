@@ -4,18 +4,19 @@ from mpl_toolkits import mplot3d
 from data_processor import DfProcessor
 
 # file_path = 'F:/Bhola_Notun_Biddyut/2021.11.09.csv'
-file_path = 'G:/Other computers/My Computer/FGMO/Summit_Bibiyana/Summit Bib 2021.11.16.csv'
-df = DfProcessor(file_path)
+# file_path = 'G:/Other computers/My Computer/FGMO/Summit_Bibiyana/Summit Bib 2021.11.16.csv'
+file_path = 'F:/a.csv'
+df = DfProcessor(file_path, source='ems')
 df.df.plot(secondary_y=[df.df.columns[1]])
 df.df.loc[:, 'time'] = df.df.index.to_list()
 a = df.df.corr()
 plt.grid(axis='both')
 # plt.gca().xaxis.grid(True)
 # plt.gca().yaxis.grid(True)
-x_data = df.df.loc[:].iloc[:, 1].to_list()
-# x_data = df.df.loc['2021-11-09 01:00':'2021-11-09 19:00'].iloc[:, 1].to_list()
-y_data = df.df.loc[:].iloc[:, 0].to_list()
-# y_data = df.df.loc['2021-11-09 01:00':'2021-11-09 19:00'].iloc[:, 0].to_list()
+# x_data = df.df.loc[:].iloc[:, 1].to_list()
+x_data = df.df.loc['2022-02-15 13:28':].iloc[:, 1].to_list()
+# y_data = df.df.loc[:].iloc[:, 0].to_list()
+y_data = df.df.loc['2022-02-15 13:28':].iloc[:, 0].to_list()
 # df.df.plot.scatter(x=df.df.columns[1], y=df.df.columns[0])
 slope, intercept, r, p, std_err = stats.linregress(x_data, y_data)
 droop = (intercept-50.0)/50.0
