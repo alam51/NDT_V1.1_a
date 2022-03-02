@@ -17,10 +17,7 @@ a = 5
 
 def hourly_rank(df: pd.DataFrame, time_start=None, time_end=None, freq='1H'):
     """
-    df with 2 cols
-    1. FREQ
-    2. MW
-
+    processed df with 'FREQ' as first column and next all columns with 'MW'
     """
     df1 = df.loc[time_start:time_end]
     time_start = df.index[0]
