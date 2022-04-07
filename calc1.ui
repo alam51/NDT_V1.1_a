@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Pick_One</class>
- <widget class="QMainWindow" name="Pick_One">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>663</width>
-    <height>494</height>
+    <width>841</width>
+    <height>546</height>
    </rect>
   </property>
   <property name="font">
    <font>
     <family>Times New Roman</family>
+    <pointsize>12</pointsize>
    </font>
   </property>
   <property name="windowTitle">
-   <string>Calculator</string>
+   <string>NDT v1.0</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -25,7 +29,7 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QDateTimeEdit" name="dateTimeEdit_Start_2">
+   <widget class="QDateTimeEdit" name="dateTimeEdit_End">
     <property name="geometry">
      <rect>
       <x>420</x>
@@ -36,6 +40,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Times New Roman</family>
       <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
@@ -83,6 +88,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Times New Roman</family>
       <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
@@ -112,7 +118,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="comboBox_Duration_time_unit">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -123,6 +129,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Times New Roman</family>
       <pointsize>16</pointsize>
      </font>
     </property>
@@ -131,7 +138,7 @@
 </string>
     </property>
     <property name="currentText">
-     <string>Day</string>
+     <string>Year</string>
     </property>
     <item>
      <property name="text">
@@ -169,7 +176,7 @@
      </property>
     </item>
    </widget>
-   <widget class="QSpinBox" name="spinBox">
+   <widget class="QSpinBox" name="spinBox_Duration_int">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -180,6 +187,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Times New Roman</family>
       <pointsize>16</pointsize>
      </font>
     </property>
@@ -191,17 +199,18 @@
      <number>9999</number>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_2">
+   <widget class="QComboBox" name="comboBox_Interval__Time_Unit">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>290</y>
+      <x>710</x>
+      <y>50</y>
       <width>81</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Times New Roman</family>
       <pointsize>16</pointsize>
      </font>
     </property>
@@ -245,17 +254,18 @@
      </property>
     </item>
    </widget>
-   <widget class="QSpinBox" name="spinBox_2">
+   <widget class="QSpinBox" name="spinBox_Interval_Int">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>290</y>
+      <x>630</x>
+      <y>50</y>
       <width>81</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Times New Roman</family>
       <pointsize>16</pointsize>
      </font>
     </property>
@@ -267,17 +277,18 @@
      <number>9999</number>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="label_interval">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>250</y>
-      <width>161</width>
+      <x>630</x>
+      <y>10</y>
+      <width>151</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Times New Roman</family>
       <pointsize>16</pointsize>
      </font>
     </property>
@@ -295,19 +306,21 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>290</y>
+      <x>310</x>
+      <y>460</y>
       <width>131</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>MS Shell Dlg 2</family>
       <pointsize>16</pointsize>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(146, 161, 88);
+     <string notr="true">background-color: rgb(77, 77, 77);
+color: rgb(159, 200, 45);
 </string>
     </property>
     <property name="text">
@@ -317,19 +330,21 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>290</y>
+      <x>480</x>
+      <y>460</y>
       <width>131</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>MS Shell Dlg 2</family>
       <pointsize>16</pointsize>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(146, 161, 88);
+     <string notr="true">background-color: rgb(77, 77, 77);
+color: rgb(159, 200, 45);
 </string>
     </property>
     <property name="text">
@@ -358,7 +373,7 @@
     <property name="checkable">
      <bool>false</bool>
     </property>
-    <widget class="QRadioButton" name="radioButton">
+    <widget class="QRadioButton" name="radioButton_Duration">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -380,7 +395,7 @@
       <string>Duration</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_2">
+    <widget class="QRadioButton" name="radioButton_End">
      <property name="geometry">
       <rect>
        <x>180</x>
@@ -406,7 +421,138 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>460</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(77, 77, 77);
+color: rgb(159, 200, 45);
+</string>
+    </property>
+    <property name="text">
+     <string>Auto Plot</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_PP1">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>150</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(146, 161, 88);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>PP1</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_PP2">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>150</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(146, 161, 88);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>PP2</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_PP3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>400</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(146, 161, 88);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>PP3</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_PP4">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>400</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(146, 161, 88);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>PP4</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_start">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -417,6 +563,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Times New Roman</family>
       <pointsize>16</pointsize>
      </font>
     </property>
@@ -427,6 +574,9 @@
     <property name="text">
      <string>Start</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -434,8 +584,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>663</width>
-     <height>21</height>
+     <width>841</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>
