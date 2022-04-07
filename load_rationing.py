@@ -42,9 +42,27 @@ def ss_load_at_system_peak(df: pd.DataFrame) -> pd.DataFrame:
             val = val_df[value_col].max()  # Take max value
             ss_load_at_system_peak_df.loc[i, j] = val
 
-    return ss_load_at_system_peak_df
+    ss_load_at_system_peak_df = ss_load_at_system_peak_df.T
+    a = 5
+    for col in ss_load_at_system_peak_df.columns:
+        sum_val = ss_load_at_system_peak_df[col].sum()
+        ss_load_at_system_peak_df.loc['sum', col] = sum_val
+
+    return ss_load_at_system_peak_df  # SE sir format
+
+
+def ss_load_at_system_peak_ratio(df: pd.DataFrame) -> pd.DataFrame:
+    ss_load_at_system_peak_ratio_df = pd.DataFrame()
+    for col in df.columns:
+        denominator = df.loc['sum', col]
+        for i in df.index:  # except last row ('sum)
+            if i != 'sum':
+                ss_load_at_system_peak_ratio_df.loc[i, col] = df.loc[i, col] / denominator
+
+    return ss_load_at_system_peak_ratio_df
 
 
 daily_system_peak_df = daily_peak(df)
-df2 = ss_load_at_system_peak(df)
+ss_load_at_system_peak_df = ss_load_at_system_peak(df)
+ss_load_at_system_peak_ratio_df = ss_load_at_system_peak_ratio(ss_load_at_system_peak_df)
 a = 4
