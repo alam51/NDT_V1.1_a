@@ -1,16 +1,26 @@
-import pandas as pd
-import re
+from datetime import date
 
-pattern = 'by'
-# pattern = '^a...s$'
-test_string = 'abyss'
-result = re.search(pattern, test_string)
 
-a = 'SHJB1P.STTN.GEN_CALC_1.MW'
-b = a.upper()
-pat = r'.STTN'
+# random Person
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
 
-c = re.search(r'.STTN', b)
-d = re.search('CALC_', b)
-# d = re.match(r'.MW$', b)
-e = 4
+    @classmethod
+    def fromBirthYear(cls, name, birthYear):
+        return cls(name, date.today().year - birthYear)
+
+    @classmethod
+    def print_nameonly(cls):
+        return 'a'
+
+    def display(self):
+        print(self.name + "'s age is: " + str(self.age))
+
+
+person = Person('Adam', 19)
+person.display()
+
+person1 = Person.fromBirthYear('John', 1985)
+person1.display()

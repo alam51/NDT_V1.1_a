@@ -8,6 +8,7 @@ a = 4
 value_col = 'value'  # may be MW, kV etc
 ss_col = 'SS'
 
+
 def daily_peak(df: pd.DataFrame) -> pd.DataFrame:
     _index = pd.date_range(start=df.index[0], end=df.index[-1], freq='1D')
     _cols = ['peak', 'peak_time']
