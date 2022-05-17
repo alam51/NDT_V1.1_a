@@ -8,8 +8,8 @@ from data_processor import DfProcessor
 
 # file_path = 'F:/Bhola_Notun_Biddyut/2021.11.09.csv'
 # file_path = 'G:/Other computers/My Computer/FGMO/Summit_Bibiyana/Summit Bib 2021.11.16.csv'
-file_path = r'G:\Other computers\My Computer\Data [F]\FGMO\2022.02.27.csv'
-df_obj = DfProcessor(file_path, source='s')
+file_path = r'F:\2022.04.17_18.csv'
+df_obj = DfProcessor(file_path)
 df = df_obj.df
 del df_obj
 a = 5
@@ -57,8 +57,18 @@ def hourly_rank(df: pd.DataFrame, time_start=None, time_end=None, freq='1H'):
 
 rank_df = hourly_rank(df)
 rank_df.to_html('op.html')
+df.to_excel('input.xlsx')
 rank_df.to_excel('op.xlsx')
 a = 3
+
+x = df.index.values
+y1 = df['SYSCAL.SYSTEM.FREQ.HZ']
+y2 = df['SIKL2S.STTN.TOTAL_GEN_MW.MW']
+fig, ax = plt.subplots()
+ax1 = ax.twinx()
+ax.plot(x, y1, color='r')
+ax1.plot(x, y2)
+plt.show()
 # class DroopAnalyzer:
 #     pass
 #

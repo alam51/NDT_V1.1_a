@@ -12,7 +12,7 @@ class DfProcessor:
         3. to be updated....
     """
 
-    def __init__(self, file_path: str, source='s'):
+    def __init__(self, file_path: str, source=''):
 
         if source == 's':
             if file_path.endswith('.csv'):
@@ -37,3 +37,10 @@ class DfProcessor:
             raw_df1 = raw_df.set_index('Time')
             self.df = raw_df1.loc[:, ['Value', 'Value.1']]
             self.df.columns = ['Freq', 'MW']
+
+        elif source == '':
+            df = pd.read_csv(file_path, skiprows=None, parse_dates=[0],
+                             infer_datetime_format=True, index_col=[0], dayfirst=False)
+            self.df = df.dropna(axis=1, thresh=1)
+            for j in self.df.columns:
+                self.df[str(j)].replace(to_replace=0, method='bfill', inplace=True)
